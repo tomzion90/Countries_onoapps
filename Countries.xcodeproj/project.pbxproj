@@ -249,18 +249,10 @@
 		B1B983B42371CA0600EAFD2D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B1B983BD2371F1D400EAFD2D /* StateView */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		B1B983BD2371F1D400EAFD2D /* StateView */ = {
-			isa = PBXGroup;
-			children = (
 				B1B983B52371CA2700EAFD2D /* StateView.swift */,
 				B1B983B72371CA4D00EAFD2D /* StateView.xib */,
 			);
-			path = StateView;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftSVG
 
 class CountriesCell: UITableViewCell {
     
@@ -28,15 +27,6 @@ class CountriesCell: UITableViewCell {
         englishNameLabel.text = country.name
         nativeNameLabel.text = country.nativeName
 
-        if country.flag != nil {
-            let urlString = country.flag
-            let url = URL(string: urlString!)!
-            let flagImage = UIImageView(SVGURL: url) { (svgLayer) in
-                svgLayer.resizeToFit(self.flagView.bounds)
-            }
-            flagView.addSubview(flagImage)
-        }
-        
         guard let area = country.area else {
             areaLabel.text = "0"
             return
