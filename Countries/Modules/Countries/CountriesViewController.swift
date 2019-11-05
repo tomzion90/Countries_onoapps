@@ -90,11 +90,13 @@ class CountriesViewController: UIViewController {
     
     func sortAlphabetically() {
         dataSource.countries.sort(by: {$0.name < $1.name})
+        delegate.countries.sort(by: {$0.name < $1.name})
         self.reload(tableView)
     }
     
     func sortByAreaSize() {
         dataSource.countries.sort(by: {$0 < $1})
+        delegate.countries.sort(by: {$0 < $1})
         self.reload(tableView)
     }
 }

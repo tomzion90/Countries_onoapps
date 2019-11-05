@@ -15,11 +15,15 @@ class CountriesCell: UITableViewCell {
     @IBOutlet weak var areaLabel: UILabel!
     @IBOutlet weak var flagView: UIView!
     
-    
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        englishNameLabel.text = nil
+        nativeNameLabel.text = nil
+        areaLabel.text = nil
     }
     
     func fill(with country: Country) {
