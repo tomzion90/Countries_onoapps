@@ -43,6 +43,7 @@ class CountriesViewController: UIViewController {
     private func fetchData() {
         
         let stateView = StateView.loadFromNib()
+        stateView?.delegate = self
         tableView.separatorStyle = .none
         stateView?.set(.loading)
         tableView.backgroundView = stateView
@@ -105,6 +106,13 @@ extension CountriesViewController: CountrySelectionDelegate {
         viewController.modalPresentationStyle = .fullScreen
         viewController.country = country
         navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension CountriesViewController: stateViewDidTapActionDelegate {
+    
+    func stateViewDidTapActionButton() {
+        self.fetchData()
     }
 }
 

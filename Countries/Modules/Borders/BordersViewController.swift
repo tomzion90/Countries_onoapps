@@ -53,6 +53,7 @@ class BordersViewController: UIViewController {
     private func fetchBorders(searchTerm: String) {
         
         let stateView = StateView.loadFromNib()
+        stateView?.delegate = self
         tableView.separatorStyle = .none
         stateView?.set(.loading)
         tableView.backgroundView = stateView
@@ -80,5 +81,12 @@ class BordersViewController: UIViewController {
                 self.tableView.separatorStyle = .singleLine
             }
         }
+    }
+}
+
+extension BordersViewController: stateViewDidTapActionDelegate {
+    
+    func stateViewDidTapActionButton() {
+        self.fetchBorders(searchTerm: searchTerm)
     }
 }

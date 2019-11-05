@@ -19,7 +19,7 @@ class CountriesTableViewDelegate: NSObject, UITableViewDelegate {
     var countries = [Country]()
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         selectionDelegate?.presentBorders(of: countries[indexPath.row])
     }
-    
 }

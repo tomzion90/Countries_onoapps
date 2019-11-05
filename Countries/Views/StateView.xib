@@ -28,10 +28,19 @@
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="LSO-bp-x6a">
                     <rect key="frame" x="155.5" y="370.5" width="20" height="20"/>
                 </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZg-id-YmS">
+                    <rect key="frame" x="20" y="398.5" width="291" height="30"/>
+                    <state key="normal" title="Try again"/>
+                    <connections>
+                        <action selector="didTapActionButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="eaK-6E-lGe"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="xle-iq-QRI" firstAttribute="top" secondItem="ZY1-Gy-fD0" secondAttribute="bottom" constant="8" id="AYX-YX-A9l"/>
+                <constraint firstItem="dZg-id-YmS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="NUZ-Sp-upE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dZg-id-YmS" secondAttribute="trailing" constant="20" id="PYe-cz-YEH"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xle-iq-QRI" secondAttribute="trailing" constant="24" id="TPM-Eb-mJM"/>
                 <constraint firstItem="ZY1-Gy-fD0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ZHe-fc-NIm"/>
                 <constraint firstItem="LSO-bp-x6a" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aI4-AA-m3w"/>
@@ -39,10 +48,12 @@
                 <constraint firstItem="LSO-bp-x6a" firstAttribute="top" secondItem="xle-iq-QRI" secondAttribute="bottom" constant="8" id="fQh-4d-U7n"/>
                 <constraint firstItem="xle-iq-QRI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hda-iP-LIa"/>
                 <constraint firstItem="xle-iq-QRI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="irP-3n-gvS"/>
+                <constraint firstItem="dZg-id-YmS" firstAttribute="top" secondItem="LSO-bp-x6a" secondAttribute="bottom" constant="8" id="qdv-ZM-ayf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="actionButton" destination="dZg-id-YmS" id="FvF-HB-BKx"/>
                 <outlet property="activityIndicator" destination="LSO-bp-x6a" id="FTf-jL-0QQ"/>
                 <outlet property="stateImage" destination="xle-iq-QRI" id="lih-89-Geq"/>
                 <outlet property="stateLabel" destination="ZY1-Gy-fD0" id="Qbe-e7-7mh"/>

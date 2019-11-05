@@ -8,11 +8,20 @@
 
 import UIKit
 
+protocol stateViewDidTapActionDelegate: class {
+    func stateViewDidTapActionButton()
+}
+
 class StateView: UIView {
     
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var stateImage: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var actionButton: UIButton!
+    
+    
+    weak var delegate: stateViewDidTapActionDelegate?
     
     enum State {
         case loading
@@ -25,10 +34,12 @@ class StateView: UIView {
         case .loading:
             stateLabel.text = "Loading"
             stateImage.image = UIImage(named: "loading_state")
+            actionButton.isHidden = true
             activityIndicator.startAnimating()
         case .empty:
             stateLabel.text = "No boarders found"
             stateImage.image = UIImage(named: "empty_state")
+            actionButton.isHidden = true
             activityIndicator.isHidden = true
         case .networkError:
             stateLabel.text = "No signal found"
@@ -36,4 +47,9 @@ class StateView: UIView {
             activityIndicator.isHidden = true
         }
     }
+    
+    @IBAction func didTapActionButton(_ sender: Any) {
+        delegate?.stateViewDidTapActionButton()
+    }
+    
 }
