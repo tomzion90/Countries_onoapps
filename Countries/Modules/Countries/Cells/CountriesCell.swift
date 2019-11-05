@@ -7,19 +7,27 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CountriesCell: UITableViewCell {
     
     @IBOutlet weak var englishNameLabel: UILabel!
     @IBOutlet weak var nativeNameLabel: UILabel!
+    @IBOutlet weak var flagImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
-        configure()
     }
     
-    func configure() {
+    override func prepareForReuse() {
+        flagImageView.sd_cancelCurrentImageLoad()
+        flagImageView.image = nil
+    }
+    
+    func fill(with country: Country) {
         
+        englishNameLabel.text = country.name
+        nativeNameLabel.text = country.nativeName
     }
 }

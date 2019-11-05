@@ -28,22 +28,30 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Whm-3d-mfH">
+                        <rect key="frame" x="0.0" y="0.0" width="302" height="69"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Whm-3d-mfH" secondAttribute="trailing" id="8H8-8l-UH8"/>
+                    <constraint firstItem="Whm-3d-mfH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="H2j-Xw-QPm"/>
                     <constraint firstItem="NCu-qe-cqk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="QXY-x1-Cl8"/>
                     <constraint firstAttribute="bottom" secondItem="NCu-qe-cqk" secondAttribute="bottom" constant="8" id="S64-Lz-WUD"/>
                     <constraint firstItem="NCu-qe-cqk" firstAttribute="top" secondItem="W53-VX-8YN" secondAttribute="bottom" constant="8" id="SaN-Dn-gJD"/>
                     <constraint firstItem="W53-VX-8YN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="afx-Om-NYE"/>
+                    <constraint firstAttribute="bottom" secondItem="Whm-3d-mfH" secondAttribute="bottom" id="fSg-UA-ttF"/>
+                    <constraint firstItem="Whm-3d-mfH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="m1U-8T-55g"/>
                     <constraint firstItem="W53-VX-8YN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="nEA-Ip-ZI4"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="englishNameLabel" destination="W53-VX-8YN" id="E8h-vU-nAN"/>
+                <outlet property="flagImageView" destination="Whm-3d-mfH" id="meA-Zk-RMm"/>
                 <outlet property="nativeNameLabel" destination="NCu-qe-cqk" id="uL4-EI-kCe"/>
             </connections>
-            <point key="canvasLocation" x="121" y="122"/>
+            <point key="canvasLocation" x="119.56521739130436" y="121.54017857142857"/>
         </tableViewCell>
     </objects>
 </document>

@@ -10,13 +10,16 @@ import Foundation
 import UIKit
 
 class CountriesTableViewDataSource: NSObject, UITableViewDataSource {
+    
+    var countries = [Country]()
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return countries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(CountriesCell.self)", for: indexPath) as! CountriesCell
-        
+        cell.fill(with: countries[indexPath.row])
         return cell
     }
 }

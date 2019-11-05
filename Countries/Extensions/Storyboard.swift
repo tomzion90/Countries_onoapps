@@ -11,10 +11,12 @@ import UIKit
 
 enum ViewController: String {
     case countriesViewController = "CountriesViewController"
+    case bordersViewController = "BordersViewController"
 }
 
 enum Storyboard: String {
     case countries = "Countries"
+    case borders = "Borders"
 }
 
 extension UIStoryboard {

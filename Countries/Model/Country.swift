@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import UIKit
+
+struct Country: Decodable {
+    var name: String?
+    var nativeName: String?
+    var area: CGFloat?
+    var flag: String?
+}
