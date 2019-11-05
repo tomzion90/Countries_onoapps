@@ -10,7 +10,6 @@ import UIKit
 
 class CountriesViewController: UIViewController {
     
-    // MARK: - Propertires
     let delegate = CountriesTableViewDelegate()
     let dataSource = CountriesTableViewDataSource()
 
@@ -26,6 +25,9 @@ class CountriesViewController: UIViewController {
     func configure() {
         title = "Countries"
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let navigationSortButton = UIBarButtonItem(image: UIImage(named: "sorting_icon"), style: .plain, target: self, action: #selector(sortingWithOptions))
+        navigationItem.rightBarButtonItem = navigationSortButton
     }
     
     func configureTableView(){
@@ -33,17 +35,23 @@ class CountriesViewController: UIViewController {
         tableView.delegate = delegate
         delegate.selectionDelegate = self
         tableView.dataSource = dataSource
-        tableView.separatorStyle = .none
-        tableView.estimatedRowHeight = 200
+        tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
         
         tableView.register(cellType: CountriesCell.self)
     }
     
-    func fetchData() {
+    private func fetchData() {
+        
+        let stateView = StateView.loadFromNib()
+        tableView.separatorStyle = .none
+        stateView?.set(.loading)
+        tableView.backgroundView = stateView
+        
         Service.shared.fetchData { (countries, error) in
             
             if let error = error {
+                stateView?.set(.networkError)
                 print(error.localizedDescription)
             }
             
@@ -51,22 +59,42 @@ class CountriesViewController: UIViewController {
             self.dataSource.countries = countries
             self.delegate.countries = countries
             
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.reload(self.tableView)
         }
+    }
+    
+    @objc func sortingWithOptions() {
+        let alertController = UIAlertController(title: "Sort by:", message: nil, preferredStyle: .actionSheet)
+        let sortAlphabetically = UIAlertAction(title: "Alphabets", style: .default) { _ in
+            self.sortAlphabetically()
+        }
+        let sortByAreaSize = UIAlertAction(title: "Area size", style: .default) { _ in
+            self.sortByAreaSize()
+        }
+        
+        alertController.addAction(sortAlphabetically)
+        alertController.addAction(sortByAreaSize)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func sortAlphabetically() {
+        dataSource.countries.sort(by: {$0.name > $1.name})
+        self.reload(tableView)
+    }
+    
+    func sortByAreaSize() {
+        dataSource.countries.sort(by: {$0 < $1})
+        self.reload(tableView)
     }
 }
 
 extension CountriesViewController: CountrySelectionDelegate {
     
     func presentBorders(of country: Country) {
-        var viewController = BordersViewController(country: country)
-        viewController = UIStoryboard.instantiate(viewController: ViewController.bordersViewController, withStoryboard: Storyboard.borders) as! BordersViewController
+        let viewController = UIStoryboard.instantiate(viewController: ViewController.bordersViewController, withStoryboard: Storyboard.borders) as! BordersViewController
         viewController.modalPresentationStyle = .fullScreen
+        viewController.country = country
         navigationController?.pushViewController(viewController, animated: true)
     }
-    
-    
 }
 

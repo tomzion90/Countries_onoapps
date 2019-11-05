@@ -13,21 +13,22 @@ class CountriesCell: UITableViewCell {
     
     @IBOutlet weak var englishNameLabel: UILabel!
     @IBOutlet weak var nativeNameLabel: UILabel!
-    @IBOutlet weak var flagImageView: UIImageView!
+    @IBOutlet weak var areaLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = .none
-    }
-    
-    override func prepareForReuse() {
-        flagImageView.sd_cancelCurrentImageLoad()
-        flagImageView.image = nil
     }
     
     func fill(with country: Country) {
         
         englishNameLabel.text = country.name
         nativeNameLabel.text = country.nativeName
+        
+            guard let area = country.area else {
+                areaLabel.text = "0"
+                return
+            }
+            areaLabel.text = "\(area)"
+        }
     }
-}

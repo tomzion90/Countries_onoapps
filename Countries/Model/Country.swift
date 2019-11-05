@@ -9,9 +9,16 @@
 import Foundation
 import UIKit
 
-struct Country: Decodable {
-    var name: String?
+struct Country: Decodable, Comparable {
+    var name: String
     var nativeName: String?
     var area: CGFloat?
     var flag: String?
+    
+    var borders: [String]?
+    
+    static func < (lhs: Country, rhs: Country) -> Bool {
+        return lhs.area ?? 0 > rhs.area ?? 0
+    }
 }
+

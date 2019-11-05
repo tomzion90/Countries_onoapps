@@ -25,6 +25,15 @@
 		B1B983A0237199A000EAFD2D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B9839F237199A000EAFD2D /* Service.swift */; };
 		B1B983A22371A11E00EAFD2D /* BordersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983A12371A11E00EAFD2D /* BordersViewController.swift */; };
 		B1B983A52371A2B600EAFD2D /* Borders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1B983A42371A2B600EAFD2D /* Borders.storyboard */; };
+		B1B983A72371AF6200EAFD2D /* Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983A62371AF6200EAFD2D /* Border.swift */; };
+		B1B983AA2371B17200EAFD2D /* BordersTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983A92371B17200EAFD2D /* BordersTableViewDelegate.swift */; };
+		B1B983AC2371B1BB00EAFD2D /* BordersTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983AB2371B1BB00EAFD2D /* BordersTableViewDataSource.swift */; };
+		B1B983B02371B3AC00EAFD2D /* BorderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983AE2371B3AC00EAFD2D /* BorderCell.swift */; };
+		B1B983B12371B3AC00EAFD2D /* BorderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B983AF2371B3AC00EAFD2D /* BorderCell.xib */; };
+		B1B983B32371C4E100EAFD2D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983B22371C4E100EAFD2D /* UIViewController.swift */; };
+		B1B983B62371CA2700EAFD2D /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983B52371CA2700EAFD2D /* StateView.swift */; };
+		B1B983B82371CA4D00EAFD2D /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B983B72371CA4D00EAFD2D /* StateView.xib */; };
+		B1B983BA2371CEA000EAFD2D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983B92371CEA000EAFD2D /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +58,15 @@
 		B1B9839F237199A000EAFD2D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		B1B983A12371A11E00EAFD2D /* BordersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BordersViewController.swift; sourceTree = "<group>"; };
 		B1B983A42371A2B600EAFD2D /* Borders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Borders.storyboard; sourceTree = "<group>"; };
+		B1B983A62371AF6200EAFD2D /* Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Border.swift; sourceTree = "<group>"; };
+		B1B983A92371B17200EAFD2D /* BordersTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BordersTableViewDelegate.swift; sourceTree = "<group>"; };
+		B1B983AB2371B1BB00EAFD2D /* BordersTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BordersTableViewDataSource.swift; sourceTree = "<group>"; };
+		B1B983AE2371B3AC00EAFD2D /* BorderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCell.swift; sourceTree = "<group>"; };
+		B1B983AF2371B3AC00EAFD2D /* BorderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BorderCell.xib; sourceTree = "<group>"; };
+		B1B983B22371C4E100EAFD2D /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		B1B983B52371CA2700EAFD2D /* StateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
+		B1B983B72371CA4D00EAFD2D /* StateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
+		B1B983B92371CEA000EAFD2D /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		BA3CCFF7D905A19D6BC1809B /* Pods-Countries.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Countries.release.xcconfig"; path = "Target Support Files/Pods-Countries/Pods-Countries.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,9 +121,10 @@
 		B1B9836C237172FB00EAFD2D /* Countries */ = {
 			isa = PBXGroup;
 			children = (
-				B1B9839E2371998C00EAFD2D /* Networking */,
+				B1B9839E2371998C00EAFD2D /* Service */,
 				B1B9839B237187BB00EAFD2D /* Model */,
 				B1B9838823717B4200EAFD2D /* Extensions */,
+				B1B983B42371CA0600EAFD2D /* Views */,
 				B1B9838223717A2100EAFD2D /* Modules */,
 				B1B98381237175AE00EAFD2D /* Storyboards */,
 				B1B9836D237172FB00EAFD2D /* AppDelegate.swift */,
@@ -137,6 +156,8 @@
 			children = (
 				B1B9838923717B5E00EAFD2D /* Storyboard.swift */,
 				B1B983992371840E00EAFD2D /* UITableView.swift */,
+				B1B983B22371C4E100EAFD2D /* UIViewController.swift */,
+				B1B983B92371CEA000EAFD2D /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -184,24 +205,54 @@
 			isa = PBXGroup;
 			children = (
 				B1B9839C237187EA00EAFD2D /* Country.swift */,
+				B1B983A62371AF6200EAFD2D /* Border.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B1B9839E2371998C00EAFD2D /* Networking */ = {
+		B1B9839E2371998C00EAFD2D /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				B1B9839F237199A000EAFD2D /* Service.swift */,
 			);
-			path = Networking;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		B1B983A32371A12900EAFD2D /* Borders */ = {
 			isa = PBXGroup;
 			children = (
 				B1B983A12371A11E00EAFD2D /* BordersViewController.swift */,
+				B1B983A82371B15500EAFD2D /* DataSource&Delegate */,
+				B1B983AD2371B35000EAFD2D /* Cells */,
 			);
 			path = Borders;
+			sourceTree = "<group>";
+		};
+		B1B983A82371B15500EAFD2D /* DataSource&Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				B1B983A92371B17200EAFD2D /* BordersTableViewDelegate.swift */,
+				B1B983AB2371B1BB00EAFD2D /* BordersTableViewDataSource.swift */,
+			);
+			path = "DataSource&Delegate";
+			sourceTree = "<group>";
+		};
+		B1B983AD2371B35000EAFD2D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B1B983AE2371B3AC00EAFD2D /* BorderCell.swift */,
+				B1B983AF2371B3AC00EAFD2D /* BorderCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B1B983B42371CA0600EAFD2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B1B983B52371CA2700EAFD2D /* StateView.swift */,
+				B1B983B72371CA4D00EAFD2D /* StateView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +317,8 @@
 			files = (
 				B1B9837A237172FE00EAFD2D /* LaunchScreen.storyboard in Resources */,
 				B1B98377237172FE00EAFD2D /* Assets.xcassets in Resources */,
+				B1B983B82371CA4D00EAFD2D /* StateView.xib in Resources */,
+				B1B983B12371B3AC00EAFD2D /* BorderCell.xib in Resources */,
 				B1B98375237172FB00EAFD2D /* Main.storyboard in Resources */,
 				B1B983982371830800EAFD2D /* CountriesCell.xib in Resources */,
 				B1B983A52371A2B600EAFD2D /* Borders.storyboard in Resources */,
@@ -322,7 +375,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1B983B62371CA2700EAFD2D /* StateView.swift in Sources */,
+				B1B983AA2371B17200EAFD2D /* BordersTableViewDelegate.swift in Sources */,
 				B1B9838A23717B5E00EAFD2D /* Storyboard.swift in Sources */,
+				B1B983AC2371B1BB00EAFD2D /* BordersTableViewDataSource.swift in Sources */,
+				B1B983A72371AF6200EAFD2D /* Border.swift in Sources */,
+				B1B983B02371B3AC00EAFD2D /* BorderCell.swift in Sources */,
 				B1B983972371830800EAFD2D /* CountriesCell.swift in Sources */,
 				B1B983A22371A11E00EAFD2D /* BordersViewController.swift in Sources */,
 				B1B98392237181CF00EAFD2D /* CountriesTableViewDelegate.swift in Sources */,
@@ -332,6 +390,8 @@
 				B1B9839A2371840E00EAFD2D /* UITableView.swift in Sources */,
 				B1B983A0237199A000EAFD2D /* Service.swift in Sources */,
 				B1B98370237172FB00EAFD2D /* SceneDelegate.swift in Sources */,
+				B1B983B32371C4E100EAFD2D /* UIViewController.swift in Sources */,
+				B1B983BA2371CEA000EAFD2D /* UIView.swift in Sources */,
 				B1B9838423717A5D00EAFD2D /* CountriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
