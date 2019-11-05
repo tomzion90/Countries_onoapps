@@ -35,6 +35,7 @@ class StateView: UIView {
             stateLabel.text = "Loading"
             stateImage.image = UIImage(named: "loading_state")
             actionButton.isHidden = true
+            activityIndicator.isHidden = false
             activityIndicator.startAnimating()
         case .empty:
             stateLabel.text = "No boarders found"
@@ -44,6 +45,7 @@ class StateView: UIView {
         case .networkError:
             stateLabel.text = "No signal found"
             stateImage.image = UIImage(named: "network_error_state")
+            actionButton.isHidden = false
             activityIndicator.isHidden = true
         }
     }

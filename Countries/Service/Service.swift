@@ -19,7 +19,11 @@ class Service {
         URLSession.shared.dataTask(with: url) { (data, responce, error) in
             
             do {
-                guard let data = data else { return }
+                guard let data = data else {
+                    completion(nil, error)
+                    return
+                }
+                
                 let countries = try JSONDecoder().decode([Country].self, from: data)
                 completion(countries, nil)
             } catch {
@@ -37,7 +41,11 @@ class Service {
         URLSession.shared.dataTask(with: url) { (data, responce, error) in
             
             do {
-                guard let data = data else { return }
+                guard let data = data else {
+                    completion(nil, error)
+                    return
+                }
+                
                 let borders = try JSONDecoder().decode([Border].self, from: data)
                 completion(borders, nil)
             } catch {
