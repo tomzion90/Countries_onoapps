@@ -14,8 +14,6 @@ extension UIViewController {
     func reload(_ tableView: UITableView) {
         DispatchQueue.main.async {
             tableView.reloadData()
-            tableView.backgroundView = nil
-            tableView.separatorStyle = .singleLine
         }
     }
 }

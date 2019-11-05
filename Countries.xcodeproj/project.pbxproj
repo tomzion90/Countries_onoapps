@@ -30,10 +30,10 @@
 		B1B983AC2371B1BB00EAFD2D /* BordersTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983AB2371B1BB00EAFD2D /* BordersTableViewDataSource.swift */; };
 		B1B983B02371B3AC00EAFD2D /* BorderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983AE2371B3AC00EAFD2D /* BorderCell.swift */; };
 		B1B983B12371B3AC00EAFD2D /* BorderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B983AF2371B3AC00EAFD2D /* BorderCell.xib */; };
-		B1B983B32371C4E100EAFD2D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983B22371C4E100EAFD2D /* UIViewController.swift */; };
 		B1B983B62371CA2700EAFD2D /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983B52371CA2700EAFD2D /* StateView.swift */; };
 		B1B983B82371CA4D00EAFD2D /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B983B72371CA4D00EAFD2D /* StateView.xib */; };
 		B1B983BA2371CEA000EAFD2D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983B92371CEA000EAFD2D /* UIView.swift */; };
+		B1B983BC2371DE3F00EAFD2D /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B983BB2371DE3F00EAFD2D /* UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,10 +63,10 @@
 		B1B983AB2371B1BB00EAFD2D /* BordersTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BordersTableViewDataSource.swift; sourceTree = "<group>"; };
 		B1B983AE2371B3AC00EAFD2D /* BorderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCell.swift; sourceTree = "<group>"; };
 		B1B983AF2371B3AC00EAFD2D /* BorderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BorderCell.xib; sourceTree = "<group>"; };
-		B1B983B22371C4E100EAFD2D /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		B1B983B52371CA2700EAFD2D /* StateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
 		B1B983B72371CA4D00EAFD2D /* StateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
 		B1B983B92371CEA000EAFD2D /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		B1B983BB2371DE3F00EAFD2D /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		BA3CCFF7D905A19D6BC1809B /* Pods-Countries.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Countries.release.xcconfig"; path = "Target Support Files/Pods-Countries/Pods-Countries.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,8 +156,8 @@
 			children = (
 				B1B9838923717B5E00EAFD2D /* Storyboard.swift */,
 				B1B983992371840E00EAFD2D /* UITableView.swift */,
-				B1B983B22371C4E100EAFD2D /* UIViewController.swift */,
 				B1B983B92371CEA000EAFD2D /* UIView.swift */,
+				B1B983BB2371DE3F00EAFD2D /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -249,10 +249,18 @@
 		B1B983B42371CA0600EAFD2D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1B983BD2371F1D400EAFD2D /* StateView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B1B983BD2371F1D400EAFD2D /* StateView */ = {
+			isa = PBXGroup;
+			children = (
 				B1B983B52371CA2700EAFD2D /* StateView.swift */,
 				B1B983B72371CA4D00EAFD2D /* StateView.xib */,
 			);
-			path = Views;
+			path = StateView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +385,7 @@
 			files = (
 				B1B983B62371CA2700EAFD2D /* StateView.swift in Sources */,
 				B1B983AA2371B17200EAFD2D /* BordersTableViewDelegate.swift in Sources */,
+				B1B983BC2371DE3F00EAFD2D /* UIViewController.swift in Sources */,
 				B1B9838A23717B5E00EAFD2D /* Storyboard.swift in Sources */,
 				B1B983AC2371B1BB00EAFD2D /* BordersTableViewDataSource.swift in Sources */,
 				B1B983A72371AF6200EAFD2D /* Border.swift in Sources */,
@@ -390,7 +399,6 @@
 				B1B9839A2371840E00EAFD2D /* UITableView.swift in Sources */,
 				B1B983A0237199A000EAFD2D /* Service.swift in Sources */,
 				B1B98370237172FB00EAFD2D /* SceneDelegate.swift in Sources */,
-				B1B983B32371C4E100EAFD2D /* UIViewController.swift in Sources */,
 				B1B983BA2371CEA000EAFD2D /* UIView.swift in Sources */,
 				B1B9838423717A5D00EAFD2D /* CountriesViewController.swift in Sources */,
 			);

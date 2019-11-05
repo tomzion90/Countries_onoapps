@@ -7,13 +7,16 @@
 //
 
 import UIKit
-import SDWebImage
+import SwiftSVG
 
 class CountriesCell: UITableViewCell {
     
     @IBOutlet weak var englishNameLabel: UILabel!
     @IBOutlet weak var nativeNameLabel: UILabel!
     @IBOutlet weak var areaLabel: UILabel!
+    @IBOutlet weak var flagView: UIView!
+    
+    
     
     
     override func awakeFromNib() {
@@ -24,11 +27,20 @@ class CountriesCell: UITableViewCell {
         
         englishNameLabel.text = country.name
         nativeNameLabel.text = country.nativeName
-        
-            guard let area = country.area else {
-                areaLabel.text = "0"
-                return
+
+        if country.flag != nil {
+            let urlString = country.flag
+            let url = URL(string: urlString!)!
+            let flagImage = UIImageView(SVGURL: url) { (svgLayer) in
+                svgLayer.resizeToFit(self.flagView.bounds)
             }
-            areaLabel.text = "\(area)"
+            flagView.addSubview(flagImage)
         }
+        
+        guard let area = country.area else {
+            areaLabel.text = "0"
+            return
+        }
+        areaLabel.text = "\(area) sq km"
     }
+}

@@ -16,7 +16,7 @@ class StateView: UIView {
     
     enum State {
         case loading
-        case noBoarders
+        case empty
         case networkError
     }
     
@@ -24,12 +24,15 @@ class StateView: UIView {
         switch state {
         case .loading:
             stateLabel.text = "Loading"
+            stateImage.image = UIImage(named: "loading_state")
             activityIndicator.startAnimating()
-        case .noBoarders:
+        case .empty:
             stateLabel.text = "No boarders found"
+            stateImage.image = UIImage(named: "empty_state")
             activityIndicator.isHidden = true
         case .networkError:
             stateLabel.text = "No signal found"
+            stateImage.image = UIImage(named: "network_error_state")
             activityIndicator.isHidden = true
         }
     }

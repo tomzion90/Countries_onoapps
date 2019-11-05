@@ -24,12 +24,11 @@ class CountriesViewController: UIViewController {
     
     func configure() {
         title = "Countries"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
         let navigationSortButton = UIBarButtonItem(image: UIImage(named: "sorting_icon"), style: .plain, target: self, action: #selector(sortingWithOptions))
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = navigationSortButton
     }
-    
+
     func configureTableView(){
         
         tableView.delegate = delegate
@@ -37,7 +36,7 @@ class CountriesViewController: UIViewController {
         tableView.dataSource = dataSource
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
-        
+
         tableView.register(cellType: CountriesCell.self)
     }
     
@@ -48,18 +47,29 @@ class CountriesViewController: UIViewController {
         stateView?.set(.loading)
         tableView.backgroundView = stateView
         
-        Service.shared.fetchData { (countries, error) in
+        Service.shared.fetchData { [weak self] (countries, error) in
             
-            if let error = error {
-                stateView?.set(.networkError)
-                print(error.localizedDescription)
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                if error != nil {
+                    stateView?.set(.networkError)
+                    return
+                }
+                
+                guard let countries = countries else { return }
+                self.dataSource.countries = countries
+                self.delegate.countries = countries
+                
+                if countries.count == 0 {
+                    stateView?.set(.empty)
+                    return
+                }
+                
+                self.tableView.reloadData()
+                self.tableView.backgroundView = nil
+                self.tableView.separatorStyle = .singleLine
             }
-            
-            guard let countries = countries else { return }
-            self.dataSource.countries = countries
-            self.delegate.countries = countries
-            
-            self.reload(self.tableView)
         }
     }
     
@@ -78,7 +88,7 @@ class CountriesViewController: UIViewController {
     }
     
     func sortAlphabetically() {
-        dataSource.countries.sort(by: {$0.name > $1.name})
+        dataSource.countries.sort(by: {$0.name < $1.name})
         self.reload(tableView)
     }
     

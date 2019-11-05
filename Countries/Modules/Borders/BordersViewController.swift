@@ -27,7 +27,6 @@ class BordersViewController: UIViewController {
     
     func configure() {
         title = "\(country?.name ?? "") Borders"
-        self.navigationItem.largeTitleDisplayMode = .never
     }
     
     func configureSearchTerm() {
@@ -46,6 +45,7 @@ class BordersViewController: UIViewController {
         tableView.dataSource = dataSource
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: Double(Float.leastNormalMagnitude)))
         
         tableView.register(cellType: BorderCell.self)
     }
@@ -57,17 +57,28 @@ class BordersViewController: UIViewController {
         stateView?.set(.loading)
         tableView.backgroundView = stateView
         
-        Service.shared.fetchBorders(searchTerm: searchTerm) { (borders, error) in
+        if searchTerm.isEmpty {
+            stateView?.set(.empty)
+            return
+        }
+        
+        Service.shared.fetchBorders(searchTerm: searchTerm) { [weak self] (borders, error) in
             
-            if let error = error {
-                stateView?.set(.networkError)
-                print(error.localizedDescription)
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                if error != nil {
+                    stateView?.set(.networkError)
+                    return
+                }
+                
+                guard let borders = borders else { return }
+                self.dataSource.borders = borders
+            
+                self.tableView.reloadData()
+                self.tableView.backgroundView = nil
+                self.tableView.separatorStyle = .singleLine
             }
-            
-            guard let borders = borders else { return }
-            self.dataSource.borders = borders
-            
-            self.reload(self.tableView)
         }
     }
 }

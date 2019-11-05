@@ -30,6 +30,7 @@ class Service {
     }
     
     func fetchBorders(searchTerm: String, completion: @escaping ([Border]?, Error?) -> Void) {
+        
         let urlString = "https://restcountries.eu/rest/v2/alpha?codes=\(searchTerm)"
         
         guard let url = URL(string: urlString) else { return }

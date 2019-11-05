@@ -14,14 +14,6 @@ class BordersTableViewDataSource: NSObject, UITableViewDataSource {
     var borders = [Border]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let stateView = StateView.loadFromNib()
-        stateView?.set(.noBoarders)
-        
-        if borders.count == 0 {
-            tableView.backgroundView = stateView
-            tableView.separatorStyle = .none
-        }
-        
         return borders.count
     }
     

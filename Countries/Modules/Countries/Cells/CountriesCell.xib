@@ -16,27 +16,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="302" height="69"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXo-aJ-ikQ">
+                        <rect key="frame" x="0.0" y="0.0" width="302" height="69"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W53-VX-8YN">
-                        <rect key="frame" x="8" y="8" width="203" height="23.5"/>
+                        <rect key="frame" x="8" y="8" width="234.5" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Native Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCu-qe-cqk">
-                        <rect key="frame" x="8" y="39.5" width="203" height="21.5"/>
+                        <rect key="frame" x="8" y="37.5" width="234.5" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XH-RM-rmn">
-                        <rect key="frame" x="227" y="39.5" width="67" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Area size:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oP7-Pt-V9p">
+                        <rect key="frame" x="227" y="16" width="67" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Area size:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oP7-Pt-V9p">
-                        <rect key="frame" x="227" y="8" width="67" height="23.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XH-RM-rmn">
+                        <rect key="frame" x="258.5" y="34" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -45,24 +49,26 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="3XH-RM-rmn" secondAttribute="trailing" constant="8" id="2NR-Fg-BIa"/>
                     <constraint firstAttribute="trailing" secondItem="oP7-Pt-V9p" secondAttribute="trailing" constant="8" id="AAs-Ze-Kvb"/>
+                    <constraint firstItem="oP7-Pt-V9p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="BYH-kt-d36"/>
                     <constraint firstItem="3XH-RM-rmn" firstAttribute="leading" secondItem="NCu-qe-cqk" secondAttribute="trailing" constant="16" id="CJV-Gg-6yA"/>
-                    <constraint firstAttribute="bottom" secondItem="NCu-qe-cqk" secondAttribute="bottom" constant="8" id="P2c-VP-F0p"/>
+                    <constraint firstItem="OXo-aJ-ikQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="CQS-qL-oQb"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NCu-qe-cqk" secondAttribute="bottom" constant="8" id="P2c-VP-F0p"/>
                     <constraint firstItem="NCu-qe-cqk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="QXY-x1-Cl8"/>
                     <constraint firstItem="NCu-qe-cqk" firstAttribute="top" secondItem="W53-VX-8YN" secondAttribute="bottom" constant="8" id="SaN-Dn-gJD"/>
-                    <constraint firstItem="oP7-Pt-V9p" firstAttribute="centerY" secondItem="W53-VX-8YN" secondAttribute="centerY" id="WfW-QP-2gq"/>
-                    <constraint firstItem="oP7-Pt-V9p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="XpO-ul-5cY"/>
+                    <constraint firstItem="OXo-aJ-ikQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Zzv-L8-g5v"/>
                     <constraint firstItem="W53-VX-8YN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="afx-Om-NYE"/>
-                    <constraint firstItem="3XH-RM-rmn" firstAttribute="width" secondItem="oP7-Pt-V9p" secondAttribute="width" id="bGI-D1-0re"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3XH-RM-rmn" secondAttribute="bottom" constant="8" id="biE-ZA-KAY"/>
+                    <constraint firstAttribute="trailing" secondItem="OXo-aJ-ikQ" secondAttribute="trailing" id="c9u-9m-csJ"/>
+                    <constraint firstAttribute="bottom" secondItem="OXo-aJ-ikQ" secondAttribute="bottom" id="mnQ-5w-JOO"/>
                     <constraint firstItem="W53-VX-8YN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="nEA-Ip-ZI4"/>
                     <constraint firstItem="3XH-RM-rmn" firstAttribute="leading" secondItem="W53-VX-8YN" secondAttribute="trailing" constant="16" id="rPW-NJ-wve"/>
-                    <constraint firstItem="3XH-RM-rmn" firstAttribute="top" secondItem="oP7-Pt-V9p" secondAttribute="bottom" constant="8" id="tHU-cm-qe7"/>
+                    <constraint firstItem="3XH-RM-rmn" firstAttribute="top" secondItem="oP7-Pt-V9p" secondAttribute="bottom" id="tHU-cm-qe7"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="areaLabel" destination="3XH-RM-rmn" id="8yM-D4-YAB"/>
                 <outlet property="englishNameLabel" destination="W53-VX-8YN" id="E8h-vU-nAN"/>
+                <outlet property="flagView" destination="OXo-aJ-ikQ" id="WhW-0Y-s5T"/>
                 <outlet property="nativeNameLabel" destination="NCu-qe-cqk" id="uL4-EI-kCe"/>
             </connections>
             <point key="canvasLocation" x="119.56521739130436" y="121.54017857142857"/>
