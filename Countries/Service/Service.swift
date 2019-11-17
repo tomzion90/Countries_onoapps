@@ -13,29 +13,19 @@ class Service {
     
     static let shared = Service()
     
-    func fetchData(completion: @escaping ([Country]?, Error?) -> Void) {
+    func fetchCountries(completion: @escaping ([Country]?, Error?) -> Void) {
         let urlString = "https://restcountries.eu/rest/v2/all"
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, responce, error) in
-            
-            do {
-                guard let data = data else {
-                    completion(nil, error)
-                    return
-                }
-                
-                let countries = try JSONDecoder().decode([Country].self, from: data)
-                completion(countries, nil)
-            } catch {
-                completion(nil, error)
-            }
-            
-        }.resume()
+        fetchData(urlString: urlString, completion: completion)
     }
     
     func fetchBorders(searchTerm: String, completion: @escaping ([Border]?, Error?) -> Void) {
         
         let urlString = "https://restcountries.eu/rest/v2/alpha?codes=\(searchTerm)"
+        fetchData(urlString: urlString, completion: completion)
+        
+    }
+    
+    func fetchData<T: Decodable>(urlString: String, completion: @escaping (T?, Error?) -> Void) {
         
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, responce, error) in
@@ -46,8 +36,8 @@ class Service {
                     return
                 }
                 
-                let borders = try JSONDecoder().decode([Border].self, from: data)
-                completion(borders, nil)
+                let countries = try JSONDecoder().decode(T.self, from: data)
+                completion(countries, nil)
             } catch {
                 completion(nil, error)
             }

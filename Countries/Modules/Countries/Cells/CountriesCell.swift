@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import SVGKit
 
-class CountriesCell: UITableViewCell {
+class CountriesCell: TableViewCell<Country> {
     
     @IBOutlet weak var englishNameLabel: UILabel!
     @IBOutlet weak var nativeNameLabel: UILabel!
     @IBOutlet weak var areaLabel: UILabel!
-    @IBOutlet weak var flagView: UIView!
+    @IBOutlet weak var flagImageView: UIImageView!
+    
+    override var item: Country! {
+        didSet {
+            
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,17 +31,32 @@ class CountriesCell: UITableViewCell {
         englishNameLabel.text = nil
         nativeNameLabel.text = nil
         areaLabel.text = nil
+        flagImageView.image = nil
     }
     
-    func fill(with country: Country) {
+    override func fill(with item: Country) {
+        super.fill(with: item)
         
-        englishNameLabel.text = country.name
-        nativeNameLabel.text = country.nativeName
+        englishNameLabel.text = item.name
+        nativeNameLabel.text = item.nativeName
+        
+        flagImageView.image = UIImage(named: "image_place_holder")
+        
+        DispatchQueue.global(qos: .utility).async {
+            
+            if let url = URL(string: item.flag!) {
+                let svgFlagImage = SVGKImage(contentsOf: url)
+                DispatchQueue.main.async {
+                    self.flagImageView.image = svgFlagImage?.uiImage
+                }
+            }
+        }
 
-        guard let area = country.area else {
+        guard let area = item.area else {
             areaLabel.text = "0"
             return
         }
         areaLabel.text = "\(area) sq km"
     }
+    
 }

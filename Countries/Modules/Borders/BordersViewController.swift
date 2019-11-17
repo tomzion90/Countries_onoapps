@@ -8,25 +8,30 @@
 
 import UIKit
 
-class BordersViewController: UIViewController {
+class BordersViewController: TableView<BorderCell, Border> {
     
     let delegate = BordersTableViewDelegate()
-    let dataSource = BordersTableViewDataSource()
     
-    @IBOutlet weak var tableView: UITableView!
     var country: Country?
     var searchTerm: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
         configureSearchTerm()
-        configureTableView()
         fetchBorders(searchTerm: searchTerm)
     }
     
-    func configure() {
-        title = "\(country?.name ?? "") Borders"
+    override func configure() {
+        super.configure()
+        
+        configureTableView(with: delegate, estimatedRowHeight: 300, automaticDimensionRowHeight: true)
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: Double(Float.leastNormalMagnitude)))
+        
+        tableView.register(cellType: MapCell.self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     func configureSearchTerm() {
@@ -37,21 +42,10 @@ class BordersViewController: UIViewController {
             } else {
                 searchTerm += "\(border)"
             }
-        }
+       }
     }
-    
-    func configureTableView() {
-        tableView.delegate = delegate
-        tableView.dataSource = dataSource
-        tableView.estimatedRowHeight = 300
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: Double(Float.leastNormalMagnitude)))
-        
-        tableView.register(cellType: BorderCell.self)
-    }
-    
+
     private func fetchBorders(searchTerm: String) {
-        
         let stateView = StateView.loadFromNib()
         stateView?.delegate = self
         tableView.separatorStyle = .none
@@ -60,6 +54,7 @@ class BordersViewController: UIViewController {
         
         if searchTerm.isEmpty {
             stateView?.set(.empty)
+            tableView.isScrollEnabled = false
             return
         }
         
@@ -74,8 +69,8 @@ class BordersViewController: UIViewController {
                 }
                 
                 guard let borders = borders else { return }
-                self.dataSource.borders = borders
-            
+                self.items = borders
+                
                 self.tableView.reloadData()
                 self.tableView.backgroundView = nil
                 self.tableView.separatorStyle = .singleLine
@@ -88,5 +83,50 @@ extension BordersViewController: stateViewDidTapActionDelegate {
     
     func stateViewDidTapActionButton() {
         self.fetchBorders(searchTerm: searchTerm)
+    }
+}
+
+extension BordersViewController {
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let country = country else { return "" }
+        
+        if self.country?.latlng?.count != 0 && section == 0 {
+            return "\(country.name)׳s Map"
+        } else {
+            return "\(country.name)׳s Borders"
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        if self.country?.latlng?.count != 0 {
+            return 2
+        } else {
+            return 1
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.country?.latlng?.count != 0 && section == 0 {
+            return 1
+        }
+        
+        return super.tableView(tableView, numberOfRowsInSection: items.count)
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if self.country?.latlng?.count != 0 && indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(MapCell.self)", for: indexPath) as! MapCell
+            guard let country = country else { return cell}
+            cell.fill(with: country)
+            return cell
+        }
+        
+        return super.tableView(tableView, cellForRowAt: indexPath)
     }
 }

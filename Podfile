@@ -6,5 +6,6 @@ target 'Countries' do
   use_frameworks!
 
   # Pods for Countries
+  pod 'SVGKit'
   
 end

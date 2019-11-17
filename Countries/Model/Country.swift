@@ -10,11 +10,13 @@ import Foundation
 import UIKit
 
 struct Country: Decodable, Comparable {
+    
     var name: String
     var nativeName: String?
     var area: CGFloat?
     var flag: String?
     
+    var latlng: [CGFloat]?
     var borders: [String]?
     
     static func < (lhs: Country, rhs: Country) -> Bool {

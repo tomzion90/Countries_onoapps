@@ -16,10 +16,11 @@ protocol CountrySelectionDelegate: class {
 class CountriesTableViewDelegate: NSObject, UITableViewDelegate {
     
     weak var selectionDelegate: CountrySelectionDelegate?
-    var countries = [Country]()
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        selectionDelegate?.presentBorders(of: countries[indexPath.row])
+        if let cell = tableView.cellForRow(at: indexPath) as? CountriesCell, let country = cell.item {
+            selectionDelegate?.presentBorders(of: country)
+        }
     }
 }

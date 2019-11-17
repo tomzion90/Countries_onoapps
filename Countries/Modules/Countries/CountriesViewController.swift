@@ -8,36 +8,28 @@
 
 import UIKit
 
-class CountriesViewController: UIViewController {
+class CountriesViewController: TableView<CountriesCell, Country> {
     
     let delegate = CountriesTableViewDelegate()
-    let dataSource = CountriesTableViewDataSource()
-
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
-        configureTableView()
+        items = [Country]()
         fetchData()
     }
     
-    func configure() {
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func configure() {
+        super.configure()
         title = "Countries"
         let navigationSortButton = UIBarButtonItem(image: UIImage(named: "sorting_icon"), style: .plain, target: self, action: #selector(sortingWithOptions))
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = navigationSortButton
-    }
-
-    func configureTableView(){
         
-        tableView.delegate = delegate
+        configureTableView(with: delegate, estimatedRowHeight: 300, automaticDimensionRowHeight: true)
         delegate.selectionDelegate = self
-        tableView.dataSource = dataSource
-        tableView.estimatedRowHeight = 300
-        tableView.rowHeight = UITableView.automaticDimension
-
-        tableView.register(cellType: CountriesCell.self)
     }
     
     private func fetchData() {
@@ -48,7 +40,7 @@ class CountriesViewController: UIViewController {
         stateView?.set(.loading)
         tableView.backgroundView = stateView
         
-        Service.shared.fetchData { [weak self] (countries, error) in
+        Service.shared.fetchCountries { [weak self] (countries, error) in
             
             guard let self = self else { return }
             
@@ -59,8 +51,7 @@ class CountriesViewController: UIViewController {
                 }
                 
                 guard let countries = countries else { return }
-                self.dataSource.countries = countries
-                self.delegate.countries = countries
+                self.items = countries
                 
                 if countries.count == 0 {
                     stateView?.set(.empty)
@@ -89,14 +80,12 @@ class CountriesViewController: UIViewController {
     }
     
     func sortAlphabetically() {
-        dataSource.countries.sort(by: {$0.name < $1.name})
-        delegate.countries.sort(by: {$0.name < $1.name})
+        self.items.sort(by: {$0.name < $1.name})
         self.reload(tableView)
     }
     
     func sortByAreaSize() {
-        dataSource.countries.sort(by: {$0 < $1})
-        delegate.countries.sort(by: {$0 < $1})
+         self.items.sort(by: {$0 < $1})
         self.reload(tableView)
     }
 }
@@ -104,10 +93,11 @@ class CountriesViewController: UIViewController {
 extension CountriesViewController: CountrySelectionDelegate {
     
     func presentBorders(of country: Country) {
-        let viewController = UIStoryboard.instantiate(viewController: ViewController.bordersViewController, withStoryboard: Storyboard.borders) as! BordersViewController
-        viewController.modalPresentationStyle = .fullScreen
+        let viewController = BordersViewController()
         viewController.country = country
-        navigationController?.pushViewController(viewController, animated: true)
+        UIView.animate(withDuration: 1) {
+            self.navigationController?.pushViewController(viewController, animated: false)
+        }
     }
 }
 

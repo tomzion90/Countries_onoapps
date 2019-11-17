@@ -8,7 +8,13 @@
 
 import UIKit
 
-class BorderCell: UITableViewCell {
+class BorderCell: TableViewCell<Border> {
+    
+    override var item: Border! {
+        didSet {
+            
+        }
+    }
 
     @IBOutlet weak var englishNameLabel: UILabel!
     @IBOutlet weak var nativeNameLabel: UILabel!
@@ -17,8 +23,9 @@ class BorderCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func fill(with border: Border) {
-        englishNameLabel.text = border.name
-        nativeNameLabel.text = border.nativeName
+    override func fill(with item: Border) {
+        super.fill(with: item)
+        englishNameLabel.text = item.name
+        nativeNameLabel.text = item.nativeName
     }
 }

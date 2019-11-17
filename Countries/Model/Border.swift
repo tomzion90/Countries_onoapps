@@ -9,7 +9,7 @@
 import Foundation
 
 struct Border: Decodable {
+    
     var name: String?
     var nativeName: String?
-    var flag: String?
 }
