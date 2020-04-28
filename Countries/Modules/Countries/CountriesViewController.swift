@@ -40,28 +40,21 @@ class CountriesViewController: TableView<CountriesCell, Country> {
         stateView?.set(.loading)
         tableView.backgroundView = stateView
         
-        Service.shared.fetchCountries { [weak self] (countries, error) in
-            
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                if error != nil {
-                    stateView?.set(.networkError)
-                    return
-                }
-                
-                guard let countries = countries else { return }
-                self.items = countries
-                
+        Service.shared.fetchCountries { (result) in
+            switch result {
+            case .success(let countries):
+                 self.items = countries
                 if countries.count == 0 {
                     stateView?.set(.empty)
                     return
                 }
-                
-                self.tableView.reloadData()
-                self.tableView.backgroundView = nil
-                self.tableView.separatorStyle = .singleLine
+            case .failure(let error):
+                stateView?.set(.networkError)
             }
+
+            self.tableView.reloadData()
+            self.tableView.backgroundView = nil
+            self.tableView.separatorStyle = .singleLine
         }
     }
     

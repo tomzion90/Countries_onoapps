@@ -35,16 +35,16 @@ class BordersViewController: TableView<BorderCell, Border> {
     }
     
     func configureSearchTerm() {
-      guard let borders = country?.borders else { return }
+        guard let borders = country?.borders else { return }
         for border in borders {
             if borders.last != border {
-               searchTerm += "\(border);"
+                searchTerm += "\(border);"
             } else {
                 searchTerm += "\(border)"
             }
-       }
+        }
     }
-
+    
     private func fetchBorders(searchTerm: String) {
         let stateView = StateView.loadFromNib()
         stateView?.delegate = self
@@ -58,23 +58,16 @@ class BordersViewController: TableView<BorderCell, Border> {
             return
         }
         
-        Service.shared.fetchBorders(searchTerm: searchTerm) { [weak self] (borders, error) in
-            
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                if error != nil {
-                    stateView?.set(.networkError)
-                    return
-                }
-                
-                guard let borders = borders else { return }
+        Service.shared.fetchBorders(searchTerm: searchTerm) { result in
+            switch result {
+            case .success(let borders):
                 self.items = borders
-                
-                self.tableView.reloadData()
-                self.tableView.backgroundView = nil
-                self.tableView.separatorStyle = .singleLine
+            case .failure(let error):
+                stateView?.set(.networkError)
             }
+            self.tableView.reloadData()
+            self.tableView.backgroundView = nil
+            self.tableView.separatorStyle = .singleLine
         }
     }
 }
